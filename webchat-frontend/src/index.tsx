@@ -1,19 +1,16 @@
 import React, { useState } from "react";
 import ReactDOM from "react-dom";
-import { MainLightTheme } from "./components/Theme/Presets/main-light";
-import { ThemeContext } from "./store/themeContext";
-import App from "./pages/App";
+import {Home} from "./pages/Home";
 import { MainLayout } from "./components/Layout";
+import { GlobalStyle } from "./globalStyle";
 
 const Main = () => {
-  const [theme, setTheme] = useState(MainLightTheme);
   return (
     <React.StrictMode>
-      {/* <ThemeContext.Provider value={null}> */}
+      <GlobalStyle/>
       <MainLayout>
-        <App />
+        <Home />
       </MainLayout>
-      {/* </ThemeContext.Provider> */}
     </React.StrictMode>
   );
 };
