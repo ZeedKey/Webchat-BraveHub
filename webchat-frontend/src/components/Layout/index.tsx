@@ -1,13 +1,11 @@
-import React from 'react';
-import { Footer } from '../Containers/Footer';
-import { Header } from '../Containers/Header';
+import { Header } from "../Header"
 
-export const MainLayout: React.FC<React.ReactNode> = ({children}): JSX.Element => {
-    return(
+export const MainLayout: React.FC = ({children}) => {
+    return (
         <>
-        <Header/>
-        {children}
-        <Footer/>
+            <Header />
+            {children}
+            {/* <Footer /> */}
         </>
     )
 }

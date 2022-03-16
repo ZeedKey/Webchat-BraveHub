@@ -1,36 +1,37 @@
 import React, { useState } from 'react';
-import { Button, colors, Grid, Typography as Text } from '@mui/material'
-import styled from 'styled-components'
-import { RegForm } from '../../components/Containers/RegForm';
-import { ModalWindow } from '../../components/Containers/Modal';
+import { Button } from 'react-bootstrap';
+import styled from 'styled-components';
+import { SignForm } from '../../components/Form';
+import { ModalWindow } from '../../components/Modal';
 
-export const Container = styled.div`
-    display: grid;
-    align-items: center;
-    justify-content: center;
+const Container = styled.div`
+    margin-top:25rem;
     text-align: center;
-    padding: 0px 5rem;
-    margin-top: 25rem;
 `
+const Title = styled.h1`
+    font-size: 15ch;
+    font-weight: 700;
+`
+const Subtitle = styled.h4`
+    font-size: 3ch;
+    font-weight: 500;
+    margin-bottom: 3rem;
+`
+
 export const Home = () => {
-  const [isModalOpen, setModalOpen] = useState<boolean>(false);
-  const setOpen = () => setModalOpen(true);
-  const setClose = () => setModalOpen(false);
+    const [show, setShow] = useState(false);
+    let socket = async () => new WebSocket("http://localhost:3333");
 
-  return (
-    <Container>
-      <Grid container>
-        <Grid item>
-          <Text mb={3} fontWeight={900} variant="h1">Join the Braves</Text>
-          <Text fontWeight={600} variant="h4">BraveHub is the most popular messeneger among the developers</Text>
-          <Text mb={6} fontWeight={600} variant="h4">And now it's for free</Text>
-          <Button size={'large'} variant="contained" onClick={setOpen}>Start messaging</Button>
-        </Grid>
-      </Grid>
-
-      <ModalWindow isModalOpen={isModalOpen} closeHandler={setClose}>
-        <RegForm />
-      </ModalWindow>
-    </Container>
-  );
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
+    return (
+        <Container>
+            <Title>Join the Braves!</Title>
+            <Subtitle>The most popular messenger among the developers!</Subtitle>
+            <Button size='lg' onClick={handleShow}>Start messaging</Button>
+            <ModalWindow title='Sign in' handleClose={handleClose} state={show}>
+                <SignForm/>
+            </ModalWindow>
+        </Container>
+    );
 }
