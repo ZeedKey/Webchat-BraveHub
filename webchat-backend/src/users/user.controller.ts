@@ -12,19 +12,19 @@ export class UsersController {
     return this.userService.createUser(userDto);
   }
 
-  @UseGuards(JwtAuthGuard)
+  // @UseGuards(JwtAuthGuard)
   @Get()
   getAll() {
     return this.userService.getAllUsers();
   }
 
-  @UseGuards(JwtAuthGuard)
+  // @UseGuards(JwtAuthGuard)
   @Get()
   getUserByEmail(email: string) {
     return this.userService.getUserByEmail(email);
   }
 
-  @UseGuards(JwtAuthGuard)
+  // @UseGuards(JwtAuthGuard)
   @Get()
   getUserByUsername(username: string) {
     return this.userService.getUserByUsername(username);

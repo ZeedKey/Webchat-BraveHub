@@ -2,7 +2,9 @@ import React, { useState } from 'react';
 import { Button } from 'react-bootstrap';
 import styled from 'styled-components';
 import { SignForm } from '../../components/Form';
+import { MainLayout } from '../../components/Layout/MainLayout';
 import { ModalWindow } from '../../components/Modal';
+import { GlobalStyleHomePage } from './styles';
 
 const Container = styled.div`
     margin-top:25rem;
@@ -20,18 +22,22 @@ const Subtitle = styled.h4`
 
 export const Home = () => {
     const [show, setShow] = useState(false);
-    let socket = async () => new WebSocket("http://localhost:3333");
 
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
     return (
-        <Container>
-            <Title>Join the Braves!</Title>
-            <Subtitle>The most popular messenger among the developers!</Subtitle>
-            <Button size='lg' onClick={handleShow}>Start messaging</Button>
-            <ModalWindow title='Sign in' handleClose={handleClose} state={show}>
-                <SignForm/>
-            </ModalWindow>
-        </Container>
+        <>
+            <GlobalStyleHomePage/>
+            <MainLayout>
+            <Container className="HomePage">
+                <Title>Join the Braves!</Title>
+                <Subtitle>The most popular messenger among the developers!</Subtitle>
+                <Button size='lg' onClick={handleShow}>Start messaging</Button>
+                <ModalWindow title='Sign in' handleClose={handleClose} state={show}>
+                    <SignForm />
+                </ModalWindow>
+            </Container>
+        </MainLayout>
+        </>
     );
 }

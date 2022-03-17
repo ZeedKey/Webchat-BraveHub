@@ -1,5 +1,4 @@
 import { Module } from '@nestjs/common';
-import { AppGateway } from './gateway/app.gateway';
 import { SequelizeModule } from '@nestjs/sequelize';
 import { ConfigModule } from '@nestjs/config';
 import { User } from './users/user.model';
@@ -22,6 +21,7 @@ import { AuthModule } from './auth/auth.module';
     AuthModule
   ],
   controllers: [],
-  providers: [AppGateway],
+  providers: [],
 })
+
 export class AppModule {}

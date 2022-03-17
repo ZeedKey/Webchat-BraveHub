@@ -1,18 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Home } from './pages/Home';
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
-import { GlobalStyle } from './components/GlobalStyle';
-import { MainLayout } from './components/Layout';
+import { GlobalStyle } from './GlobalStyle';
+import { BrowserRouter } from 'react-router-dom';
+import { Router } from './components/Router';
 
 ReactDOM.render(
   <React.StrictMode>
-    <GlobalStyle />
-
-    <MainLayout>
-      <Home />
-    </MainLayout>
-
+    <BrowserRouter>
+      <GlobalStyle />
+      <Router/>
+    </BrowserRouter>
   </React.StrictMode>,
   document.getElementById('root')
 );

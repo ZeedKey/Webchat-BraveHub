@@ -9,8 +9,6 @@ export const GlobalStyle = createGlobalStyle`
         sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    animation: bg-animation 3s ease-out infinite;
-    animation-direction: alternate;
     }
 
     code {
@@ -20,16 +18,5 @@ export const GlobalStyle = createGlobalStyle`
 
     .modal-dialog {
         color: ${common.black};
-    }
-
-    @keyframes bg-animation {
-        0%{
-            background-color: ${common.white};
-            color: ${blue[500]};
-        }
-        100%{
-            background-color: ${common.black};
-            color: ${common.white};
-        }
     }
 `;
