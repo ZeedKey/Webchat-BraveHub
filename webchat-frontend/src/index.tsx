@@ -1,16 +1,16 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
-import { GlobalStyle } from './GlobalStyle';
-import { BrowserRouter } from 'react-router-dom';
-import { Router } from './components/Router';
+import { ThemeProvider } from "@mui/material/styles";
+import React from "react";
+import ReactDOM from "react-dom";
+import { BrowserRouter } from "react-router-dom";
+import { Router,theme } from "./ui-kit";
 
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
-      <GlobalStyle />
-      <Router/>
+      <ThemeProvider theme={theme}>
+        <Router />
+      </ThemeProvider>
     </BrowserRouter>
   </React.StrictMode>,
-  document.getElementById('root')
+  document.getElementById("root")
 );

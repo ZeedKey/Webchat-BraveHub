@@ -3,6 +3,7 @@ import socketIOClient from "socket.io-client";
 import Cookies from "js-cookie";
 import jwtDecode from "jwt-decode";
 import { SocketsController } from "../sockets";
+import { ApiController } from "../api";
 
 interface IUserProps {
     email: string;
@@ -12,13 +13,9 @@ interface IUserProps {
 }
 type TRequestMessage = 'get' | 'post';
 
-export class messageController {
-    private host = axios.create({
-        baseURL: "http://localhost:3333"
-    });
-
+export class MessageController extends ApiController{
     public async messageHandler(reqMessage: TRequestMessage, userData: IUserProps) {
-        const { data } = await this.host.post(`/message/${reqMessage}`, { ...userData })
+        const { data } = await MessageController.host.post(`/message/${reqMessage}`, { ...userData })
             .catch(error => {
                 return error
             });

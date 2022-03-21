@@ -3,6 +3,7 @@ import socketIOClient from "socket.io-client";
 import Cookies from "js-cookie";
 import jwtDecode from "jwt-decode";
 import { SocketsController } from "../sockets";
+import { ApiController } from "../api";
 
 interface IUserProps {
     email: string;
@@ -11,12 +12,9 @@ interface IUserProps {
     secondName?: string;
 }
 type TRequestAuth = 'signIn' | 'signUp';
-export class AuthController {
-    private host = axios.create({
-        baseURL: "http://localhost:3333"
-    });
+export class AuthController extends ApiController {
     public async authHandler(reqAuth: TRequestAuth, userData: IUserProps) {
-        const { data } = await this.host.post(`/auth/${reqAuth}`, { ...userData })
+        const { data } = await AuthController.host.post(`/auth/${reqAuth}`, { ...userData })
             .catch(error => {
                 return error
             });

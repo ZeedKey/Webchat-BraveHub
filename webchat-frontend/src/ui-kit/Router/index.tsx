@@ -3,7 +3,7 @@ import { Chat } from "../../pages/Chat";
 import { Home } from "../../pages/Home";
 import { NotFound } from "../../pages/NotFound";
 
-export const Router: React.FC<React.ReactNode> = () => {
+export const Router: React.FC = () => {
     return(
         <Routes>
             <Route path="/" element={<Home/>} />
