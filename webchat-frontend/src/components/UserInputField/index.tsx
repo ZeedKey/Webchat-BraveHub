@@ -1,17 +1,13 @@
 import { FloatingLabel, Form } from 'react-bootstrap'
 import styled from 'styled-components'
 
-export const UsetTextField: React.FC<React.ReactNode> = () => {
+const Container = styled.div` 
+    height: 5rem;
+`
 
-    return (
-            <Form.Control
-                as="textarea"
-                placeholder="Leave a comment here"
-                style={{
-                    position: 'fixed',
-                    bottom:'0',
-                    height: '10rem'
-                }}
-            />
-    )
+export const UsetTextField: React.FC<React.ReactNode> = () => {
+    return <Container className="form-group">
+        <label htmlFor="exampleFormControlTextarea1">Type your message</label>
+        <textarea className="form-control" id="exampleFormControlTextarea1" rows={3}></textarea>
+    </Container>
 }

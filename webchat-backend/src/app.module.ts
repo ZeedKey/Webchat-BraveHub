@@ -4,6 +4,7 @@ import { ConfigModule } from '@nestjs/config';
 import { User } from './users/user.model';
 import { UserModule } from './users/user.module';
 import { AuthModule } from './auth/auth.module';
+import { AppGateway } from './gateway/app.gateway';
 @Module({
   imports: [
     ConfigModule.forRoot({ envFilePath: '.env' }),
@@ -21,7 +22,7 @@ import { AuthModule } from './auth/auth.module';
     AuthModule
   ],
   controllers: [],
-  providers: [],
+  providers: [AppGateway],
 })
 
 export class AppModule {}

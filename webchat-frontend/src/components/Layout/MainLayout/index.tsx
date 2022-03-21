@@ -1,3 +1,5 @@
+import styled from "styled-components"
+import { GlobalStyle } from "../../../GlobalStyle"
 import { Header } from "../../Header"
 
 export const MainLayout: React.FC = ({children}) => {
@@ -5,7 +7,6 @@ export const MainLayout: React.FC = ({children}) => {
         <>
             <Header />
             {children}
-            {/* <Footer /> */}
         </>
     )
 }

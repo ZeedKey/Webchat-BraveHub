@@ -33,7 +33,7 @@ export const Home = () => {
                 <Title>Join the Braves!</Title>
                 <Subtitle>The most popular messenger among the developers!</Subtitle>
                 <Button size='lg' onClick={handleShow}>Start messaging</Button>
-                <ModalWindow title='Sign in' handleClose={handleClose} state={show}>
+                <ModalWindow title='Sign Up' handleClose={handleClose} state={show}>
                     <SignForm />
                 </ModalWindow>
             </Container>

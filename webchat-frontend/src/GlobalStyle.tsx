@@ -2,6 +2,10 @@ import { createGlobalStyle } from "styled-components";
 import { blue, grey, common } from "@mui/material/colors";
 
 export const GlobalStyle = createGlobalStyle`
+    *{
+        margin: 0;
+        padding: 0;
+    }
     body {
     margin: 0;
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',

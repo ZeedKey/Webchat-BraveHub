@@ -1,10 +1,12 @@
 import React, { FormEvent, FormEventHandler, useState } from "react";
 import { Button, Form } from "react-bootstrap"
-import axios from 'axios';
-import { host } from "../../contollers/api";
 import { Alert } from "../Alert";
+import { UserApiController } from "../../contollers/api";
+import { useNavigate } from "react-router-dom";
 
 export const SignForm = () => {
+    const connection = new UserApiController();
+    const navigate = useNavigate();
     const [data, setData] = useState({
         username: '',
         password: '',
@@ -24,18 +26,9 @@ export const SignForm = () => {
     }
     const handleFormSubmit = async (e: React.SyntheticEvent) => {
         e.preventDefault();
-        await host.post('/auth/signUp', {
-            ...data
-        })
-            .then((user) => console.log(user))
-            .catch(error => {
-                setIsError(true);
-                setError({
-                    status: `Error : ${error.response.statusText}`,
-                    message: error.response.data.message
-                })
-            }
-            );
+        await connection.actionHandler('signUp', data)
+        .catch(error => alert(error))
+        .then(() => navigate('/chat'))
     }
 
     return (

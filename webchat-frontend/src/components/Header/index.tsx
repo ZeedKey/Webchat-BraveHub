@@ -21,8 +21,8 @@ export const Header: React.FC<IHeaderProps> = ({ isLoggedIn }) => {
                                 </Link>
                             </Nav>
                             <Nav>
-                                <Nav.Link href="/signin">Sign In</Nav.Link>
-                                <Button variant="primary">Sign Up</Button>
+                                <Button variant="secondary">Sign In</Button>
+                                <Button variant="primary" style={{ marginLeft: 15 }}>Sign Up</Button>
                             </Nav>
                         </>
                         :
