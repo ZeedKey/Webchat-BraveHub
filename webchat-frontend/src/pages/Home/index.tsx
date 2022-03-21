@@ -27,17 +27,17 @@ export const Home = () => {
     const handleShow = () => setShow(true);
     return (
         <>
-            <GlobalStyleHomePage/>
+            <GlobalStyleHomePage />
             <MainLayout>
-            <Container className="HomePage">
-                <Title>Join the Braves!</Title>
-                <Subtitle>The most popular messenger among the developers!</Subtitle>
-                <Button size='lg' onClick={handleShow}>Start messaging</Button>
-                <ModalWindow title='Sign Up' handleClose={handleClose} state={show}>
-                    <SignForm />
-                </ModalWindow>
-            </Container>
-        </MainLayout>
+                <Container className="HomePage">
+                    <Title>Join the Braves!</Title>
+                    <Subtitle>The most popular messenger among the developers!</Subtitle>
+                    <Button size='lg' onClick={handleShow}>Start messaging</Button>
+                    <ModalWindow title='Sign Up' handleClose={handleClose} state={show}>
+                        <SignForm />
+                    </ModalWindow>
+                </Container>
+            </MainLayout>
         </>
     );
 }

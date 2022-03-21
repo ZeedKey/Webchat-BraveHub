@@ -5,6 +5,8 @@ import { User } from './users/user.model';
 import { UserModule } from './users/user.module';
 import { AuthModule } from './auth/auth.module';
 import { AppGateway } from './gateway/app.gateway';
+import { Message } from './message/message.model';
+import { MessageModule } from './message/message.module';
 @Module({
   imports: [
     ConfigModule.forRoot({ envFilePath: '.env' }),
@@ -15,10 +17,11 @@ import { AppGateway } from './gateway/app.gateway';
       username: 'postgres',
       password: '1111',
       database: process.env.DB,
-      models: [User],
+      models: [User, Message],
       autoLoadModels: true,
     }),
     UserModule,
+    MessageModule,
     AuthModule
   ],
   controllers: [],

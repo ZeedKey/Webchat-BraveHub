@@ -6,7 +6,7 @@ interface IAlertProps {
     onClose: any
 }
 
-export const Alert: React.FC<IAlertProps> = ({children, title, onClose}) => {
+export const Alert: React.FC<IAlertProps> = ({ children, title, onClose }) => {
     return (
         <AlertPopUp variant="danger" onClose={onClose} dismissible>
             <AlertPopUp.Heading>{title}</AlertPopUp.Heading>
