@@ -16,9 +16,5 @@ export class User extends Model<User, IUserCreationAttrs> {
     @Column({ type: DataType.STRING, unique: true, allowNull: false})
     username: string;
     @Column({ type: DataType.STRING, allowNull: false})
-    firstName: string;
-    @Column({ type: DataType.STRING, allowNull: false})
-    secondName: string;
-    @Column({ type: DataType.STRING, allowNull: false})
     password: string;
 }
