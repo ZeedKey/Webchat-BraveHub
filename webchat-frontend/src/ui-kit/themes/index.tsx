@@ -19,13 +19,22 @@ export const theme = createTheme({
       fontSize: 34,
       fontWeight: '400'
     },
+    h6: {
+      fontSize: 16,
+      fontWeight: '300'
+    },
+    h5: {
+      fontSize: 14,
+      fontWeight: '400'
+    },
     subtitle1: {
       fontSize: 26,
     },
     subtitle2: {
-      fontSize: 24,
+      fontSize: 18,
     },
     body1: {
+      fontSize: 13,
       fontWeight: 500,
     },
     body2: {

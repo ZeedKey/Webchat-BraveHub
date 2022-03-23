@@ -9,8 +9,8 @@ export class MessageService {
     @InjectModel(Message) private MessageRepository: typeof Message,
   ) {}
 
-  async createMessage(dto: CreateMessageDto) {
-    const message = await this.MessageRepository.create(dto);
+  async createMessage(messageDto: CreateMessageDto) {
+    const message = await this.MessageRepository.create(messageDto);
     return message;
   }
 

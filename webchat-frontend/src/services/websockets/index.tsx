@@ -1,8 +1,4 @@
-import axios from "axios";
 import socketIOClient from "socket.io-client";
-import Cookies from "js-cookie";
-import jwtDecode from "jwt-decode";
-
 export class SocketsController {
     private static instance: any;
     public static getInstance(): any {

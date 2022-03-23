@@ -8,7 +8,7 @@ export class MessagesController {
   constructor(private messageService: MessageService) {}
 
   @Post()
-  create(@Body() userDto: CreateMessageDto) {
+  createMessage(@Body() userDto: CreateMessageDto) {
     return this.messageService.createMessage(userDto);
   }
 

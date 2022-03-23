@@ -13,7 +13,7 @@ export interface SessionState {
 
 const initialState: SessionState = {
   theme: themes.default,
-  isLogged: false,
+  isLogged: true,
   isSignUpModalOpen: false,
   isSignInModalOpen: false,
 };

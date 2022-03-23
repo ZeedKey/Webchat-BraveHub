@@ -1,4 +1,5 @@
 import {createApi, fetchBaseQuery} from "@reduxjs/toolkit/dist/query/react"
+import Cookies from "js-cookie"
 
 export const authAPI = createApi({
     reducerPath: 'authAPI',
@@ -9,14 +10,17 @@ export const authAPI = createApi({
         signin: build.query({
             query: (body) => ({
                 url: '/auth/signIn',
+                method: 'POST',
+                authorization: Cookies.get('TOKEN'),
+                body,
             })
         }),
         signup: build.query({
             query: (body: any) => ({
                 url: '/auth/signUp',
                 method: 'POST',
-                body
-            })
+                body,
+            }),
         })
     })
 })
