@@ -11,7 +11,6 @@ export const authAPI = createApi({
             query: (body) => ({
                 url: '/auth/signIn',
                 method: 'POST',
-                authorization: Cookies.get('TOKEN'),
                 body,
             })
         }),

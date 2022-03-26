@@ -1,35 +1,25 @@
 import { Button, Stack, TextField, Typography } from "@mui/material"
 import { Modal } from "..";
-import { useNavigate } from 'react-router-dom';
-import { authAPI } from "../../services/auth";
-import { useSelector, useDispatch } from 'react-redux'
-import Cookies from "js-cookie";
-import { setIsLogged } from "../../store/session";
+import {useAuth} from '../hooks'
 interface ISignUpForm {
     open: any;
 }
+interface IFormValues {
+    username: string;
+    email: string;
+    password: string;
+}
 
 export const SignUp: React.FC<ISignUpForm> = ({ open }) => {
-    const navigate = useNavigate();
-    const dispatch = useDispatch();
+    const { send } = useAuth('signup');
 
-    const onSubmit = (e: any) => {
+    const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        const promise: any = dispatch(authAPI.endpoints.signup.initiate({
-            username: e.target[0].value,
-            email: e.target[2].value,
-            password: e.target[4].value,
-        }))
-        promise
-            .unwrap()
-            .then((data: any) => { 
-                Cookies.set('TOKEN', data.token) 
-                dispatch(setIsLogged(true))
-                navigate('/chat')
-            })
-            .catch((error: any) => alert(error.status))
-        promise.unsubscribe();
+        const form = new FormData(e.currentTarget);
+        const values: any = Object.fromEntries(form);
+        send(values);
     }
+
     return (
         <Modal open={open}>
             <form onSubmit={onSubmit}>
@@ -37,9 +27,9 @@ export const SignUp: React.FC<ISignUpForm> = ({ open }) => {
                     <Typography variant="h2" component="h1" sx={{ textAlign: 'center' }}>
                         Sign Up
                     </Typography>
-                    <TextField id="outlined-basic" label="Username" variant="outlined" required />
-                    <TextField id="outlined-basic" type="email" label="Email" variant="outlined" required />
-                    <TextField id="outlined-basic" label="Password" variant="outlined" required />
+                    <TextField name="username" id="outlined-basic" label="Username" variant="outlined" required />
+                    <TextField name="email" id="outlined-basic" type="email" label="Email" variant="outlined" required />
+                    <TextField name="password" id="outlined-basic" label="Password" variant="outlined" required />
                     <Button type="submit" size="large" variant="contained" sx={{ textAlign: "center", mt: 2 }}>
                         Sign Up
                     </Button>

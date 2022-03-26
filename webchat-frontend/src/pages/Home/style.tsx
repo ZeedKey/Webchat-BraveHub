@@ -1,4 +1,4 @@
-import { createStyles, keyframes, makeStyles } from '@mui/material';
+import { createStyles, css, keyframes, makeStyles } from '@mui/material';
 import { blue, common } from '@mui/material/colors';
 import GlobalStyles from '@mui/material/GlobalStyles';
 
@@ -10,3 +10,7 @@ export const changeColorAnimation = keyframes`
         background: white;
     }
 `
+
+// export const HomePageAnimation = css`
+//     animation: ${changeColorAnimation};
+// `

@@ -43,8 +43,8 @@ export class AuthService {
     const isPassCorrect = await bcrypt.compare(pass, user.password);
 
     if (user && isPassCorrect) {
-      await bcrypt.compare(pass, user.password);
       const { password, ...result } = user;
+      console.log(result)
       return result;
     }
     throw new UnauthorizedException({ message: 'Access denied' });

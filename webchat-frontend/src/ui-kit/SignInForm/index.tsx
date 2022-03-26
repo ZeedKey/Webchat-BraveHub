@@ -1,33 +1,18 @@
 import { Button, Stack, TextField, Typography } from "@mui/material"
-import Cookies from "js-cookie";
-import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
 import { Modal } from ".."
-import { authAPI } from "../../services/auth";
-import { setIsLogged } from "../../store/session";
+import { useAuth } from "../hooks";
 
 interface ISignInForm {
     open: any;
 }
 export const SignIn: React.FC<ISignInForm> = ({ open }) => {
-    const navigate = useNavigate();
-    const dispatch = useDispatch();
+    const { send } = useAuth('signin');
 
-    const onSubmit = (e: any) => {
+    const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        const promise: any = dispatch(authAPI.endpoints.signin.initiate({
-            username: e.target[0].value,
-            password: e.target[2].value,
-        }))
-        promise
-            .unwrap()
-            .then((data: any) => { 
-                Cookies.set('TOKEN', data.token)
-                dispatch(setIsLogged(true))
-                navigate('/chat')
-            })
-            .catch((error: any) => alert(error.status))
-        promise.unsubscribe();
+        const form = new FormData(e.currentTarget);
+        const values: any = Object.fromEntries(form);
+        send(values);
     }
     return (
         <Modal open={open}>
@@ -36,8 +21,8 @@ export const SignIn: React.FC<ISignInForm> = ({ open }) => {
                     <Typography variant="h2" component="h1" sx={{ textAlign: 'center' }}>
                         Sign In
                     </Typography>
-                    <TextField id="outlined-basic" label="Username" variant="outlined" required />
-                    <TextField id="outlined-basic" label="Password" variant="outlined" required />
+                    <TextField name="username" id="outlined-basic" label="Username" variant="outlined" required />
+                    <TextField name="password" id="outlined-basic" label="Password" variant="outlined" required />
                     <Button type="submit" size="large" variant="contained" sx={{ textAlign: "center", mt: 2 }}>
                         Sign In
                     </Button>

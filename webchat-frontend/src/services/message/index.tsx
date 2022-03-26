@@ -14,12 +14,5 @@ export const messageAPI = createApi({
                 authorization: Cookies.get('TOKEN'),
             })
         }),
-        postMessage: build.query({
-            query: (body: any) => ({
-                url: '/message',
-                method: 'POST',
-                body,
-            }),
-        })
     })
 })

@@ -7,13 +7,13 @@ enum themes {
 export interface SessionState {
   theme: themes.default;
   isLogged: boolean;
-  isSignInModalOpen: false,
-  isSignUpModalOpen: false,
+  isSignInModalOpen: boolean,
+  isSignUpModalOpen: boolean,
 }
 
 const initialState: SessionState = {
   theme: themes.default,
-  isLogged: true,
+  isLogged: false,
   isSignUpModalOpen: false,
   isSignInModalOpen: false,
 };
@@ -22,19 +22,16 @@ export const sessionSlice = createSlice({
   name: "session",
   initialState,
   reducers: {
-    // setTheme: (state, PayloadAction<boolean>) => {
-    //   state.theme = state;
-    // },
-    setIsLogged: (state: any, action: PayloadAction<boolean>) => {
+    setIsLogged: (state: SessionState, action: PayloadAction<boolean>) => {
       state.isLogged = action.payload;
     },
-    setSignInModalOpen: (state: any) => {
+    setSignInModalOpen: (state: SessionState) => {
       state.isSignInModalOpen = true;
     },
-    setSignUpModalOpen: (state: any) => {
+    setSignUpModalOpen: (state: SessionState) => {
       state.isSignUpModalOpen = true;
     },
-    setModalClose: (state: any) => {
+    setModalClose: (state: SessionState) => {
       state.isSignUpModalOpen = false;
       state.isSignInModalOpen = false;
     },

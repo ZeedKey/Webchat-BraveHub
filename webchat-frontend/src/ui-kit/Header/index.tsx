@@ -1,35 +1,23 @@
 import { Button, Stack, Typography } from "@mui/material";
-import { useEffect, useState } from "react";
-import { useSelector, useDispatch } from 'react-redux'
-import { useNavigate } from "react-router-dom";
-import { RootState } from "../../store";
-import { setIsLogged, setModalClose, setSignInModalOpen, setSignUpModalOpen } from "../../store/session";
+import { useModal, useSession } from "../hooks";
 
 export const Header: React.FC = () => {
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
-  const isLogged = useSelector((state: RootState) => state.sessionReducer.isLogged);
-  const handleOpenSignUp = () => dispatch(setSignUpModalOpen());
-  const handleOpenSignIn = () => dispatch(setSignInModalOpen());
-  const handleLogout = () => {
-    dispatch(setIsLogged(false))
-    navigate('/')
-  }
+  const { openSignUp } = useModal('signup');
+  const { openSignIn } = useModal('signin');
+  const { logout, stateSession } = useSession();
 
   return (
     <Stack direction="row" sx={{ justifyContent: 'space-between', p: '2rem' }}>
       <Typography variant="subtitle2">BraveHub</Typography>
-
       <Stack direction="row" spacing={2}>
-
-        {isLogged ?
+        {stateSession ?
           <>
-            <Button size="small" onClick={handleLogout}>Logout</Button>
+            <Button size="small" onClick={logout}>Logout</Button>
           </>
           :
           <>
-            <Button size="small" onClick={handleOpenSignIn}>Sign In</Button>
-            <Button size="small" onClick={handleOpenSignUp} variant="contained">Sign Up</Button>
+            <Button size="small" onClick={openSignIn}>Sign In</Button>
+            <Button size="small" onClick={openSignUp} variant="contained">Sign Up</Button>
           </>
         }
       </Stack>

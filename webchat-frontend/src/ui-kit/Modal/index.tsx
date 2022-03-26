@@ -1,5 +1,5 @@
 import { Modal as ModalMUI, Box } from "@mui/material";
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { setModalClose } from "../../store/session";
 
 interface IModalProps {
