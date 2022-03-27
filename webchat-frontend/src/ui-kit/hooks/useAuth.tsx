@@ -11,8 +11,8 @@ import { useSession } from "./useSession";
 export const useAuth = (action: 'signup' | 'signin') => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    const [result, setResult] = useState<any>();
-    const {login} = useSession();
+    const { login } = useSession();
+    const [isError, setIsErorr] = useState<boolean>(false);
 
     switch (action) {
         case "signup": {
@@ -21,15 +21,14 @@ export const useAuth = (action: 'signup' | 'signin') => {
                     const fetchedData: any = dispatch(authAPI.endpoints.signup.initiate(data))
                     const res = fetchedData.unwrap();
                     res
-                        .catch((e: any) => alert(e.status))
+                        .catch((e: any) => setIsErorr(e))
                         .then((data: any) => {
                             Cookies.set('TOKEN', data.token);
                             login()
                             navigate('/chat');
                         })
-                    return res
                 },
-                result: result
+                isError: isError
             }
         }
         case "signin": {
@@ -38,16 +37,14 @@ export const useAuth = (action: 'signup' | 'signin') => {
                     const fetchedData: any = dispatch(authAPI.endpoints.signin.initiate(data))
                     const res = fetchedData.unwrap();
                     res
-                        .catch((e: any) => alert(e.status))
+                    .catch((e: any) => setIsErorr(e))
                         .then((data: any) => {
-                            console.log(data)
                             Cookies.set('TOKEN', data.token);
                             login()
                             navigate('/chat');
                         })
-                    return res
                 },
-                result: result
+                isError: isError
             }
         }
     }

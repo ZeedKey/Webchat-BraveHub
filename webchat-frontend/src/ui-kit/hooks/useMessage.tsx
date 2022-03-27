@@ -1,6 +1,7 @@
 import { useDispatch } from "react-redux";
 import { WS } from "../../services/websockets";
 import { messageAPI } from "../../services/message";
+import { IMessage } from "../../models/message";
 
 
 export const useMessage = () => {
@@ -12,11 +13,8 @@ export const useMessage = () => {
                 .catch((e: any) => alert(e.status))
             return res.unwrap()
         },
-        sendMessage: (data: any) => {
-            WS.emit("messageToServer", {
-                author : '2wee',
-                body : '2wee'
-            })
+        sendMessage: (data: IMessage) => {
+            WS.emit("messageToServer", data)
         },
     }
 }

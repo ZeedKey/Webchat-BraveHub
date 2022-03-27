@@ -1,39 +1,43 @@
 import { Box, Typography } from "@mui/material";
-import { blue } from "@mui/material/colors";
 import Cookies from "js-cookie";
 import jwtDecode from "jwt-decode";
 
 interface IMessageProps {
     author: string;
     body: string;
-    // createDate: string;
 }
 
 export const Message: React.FC<IMessageProps> = ({ author, body }) => {
     const messageStyle = {
-        background: blue[100],
+        background: 'white',
+        color: "black",
         padding: '0.5rem 1rem',
-        width: 'fit-content',
-        maxWidth: 'fit-content',
+        minWidth: '10rem',
+        maxWidth: 'max-content',
         borderRadius: '20px',
+        flexWrap: 'wrap',
+        overflowWrap: ' break-word'
     }
 
     const myMessageStyle = {
-        background: blue[100],
+        background: 'white',
+        color: "black",
         padding: '0.5rem 1rem',
-        width: 'fit-content',
+        minWidth: '10rem',
+        maxWidth: 'max-content',
         borderRadius: '20px',
-        alignSelf: 'end'
+        alignSelf: 'end',
+        flexWrap: 'wrap',
+        overflowWrap: ' break-word'
     }
     const hash: any = Cookies.get('TOKEN');
-    const username = jwtDecode<any>(hash).username
+    const username = jwtDecode<any>(hash).username;
     const style = username === author ? myMessageStyle : messageStyle;
     return (
         <Box sx={style}>
             <Typography variant='h6'>{author}
-                {/* <Typography component='span' variant='body1'> {createDate.slice(0, 4)} {createDate.slice(11, 19)}</Typography> */}
             </Typography>
-            <Typography variant='body1'>{body}</Typography>
+            <Typography variant='body1' component='p'>{body}</Typography>
         </Box>
     );
 }

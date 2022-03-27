@@ -1,5 +1,6 @@
 import {createApi, fetchBaseQuery} from "@reduxjs/toolkit/dist/query/react"
 import Cookies from "js-cookie"
+import { IUser } from "../../models/user"
 
 export const authAPI = createApi({
     reducerPath: 'authAPI',
@@ -8,14 +9,14 @@ export const authAPI = createApi({
     }),
     endpoints: (build) => ({
         signin: build.query({
-            query: (body) => ({
+            query: (body: IUser) => ({
                 url: '/auth/signIn',
                 method: 'POST',
                 body,
             })
         }),
         signup: build.query({
-            query: (body: any) => ({
+            query: (body: IUser) => ({
                 url: '/auth/signUp',
                 method: 'POST',
                 body,

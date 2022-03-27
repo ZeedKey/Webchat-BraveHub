@@ -1,28 +1,34 @@
 import { Button, Grid, Typography } from "@mui/material";
+import React from "react";
 import { MainLayout, SignIn, SignUp, useModal } from "../../ui-kit";
 
 export const Home = () => {
   const { openSignUp, stateSignUp } = useModal('signup');
   const { stateSignIn } = useModal('signin');
-
   return (
-    <MainLayout>
-      <Grid sx={{
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        height: '100%',
-        justifyContent: 'center',
-      }}>
-        <Typography variant="h1" component="h1" sx={{ textAlign: 'center' }}>
-          BraveHub is a free messenger for developers
-        </Typography>
-        <Button onClick={openSignUp} size="medium" variant="contained" sx={{ textAlign: "center", mt: 5 }}>
-          Start messaging
-        </Button>
-        <SignUp open={stateSignUp} />
-        <SignIn open={stateSignIn} />
-      </Grid>
-    </MainLayout>
+    <div className="Home">
+      <MainLayout>
+        <Grid sx={{
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          justifyContent: 'center',
+          position: 'absolute',
+          top: '50%',
+          left: '50%',
+          transform: 'translate(-50%, -50%)',
+        }}>
+          <Typography variant="h1" component="h1" sx={{ textAlign: 'center' }}>
+            BraveHub is a free messenger for developers
+          </Typography>
+          <Button onClick={openSignUp} size="medium" variant="contained" sx={{ textAlign: "center", mt: 5 }}>
+            Start messaging
+          </Button>
+          {/* <SignUp isOpen={stateSignUp} />
+          <SignIn isOpen={stateSignIn} /> */}
+        </Grid>
+      </MainLayout>
+    </div>
+
   );
 };

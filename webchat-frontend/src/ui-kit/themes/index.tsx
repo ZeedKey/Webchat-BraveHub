@@ -1,5 +1,5 @@
 import { createTheme } from "@mui/material/styles";
-import { blue, common, green, purple } from "@mui/material/colors";
+import { blue } from "@mui/material/colors";
 
 export const theme = createTheme({
   palette: {
@@ -12,7 +12,7 @@ export const theme = createTheme({
   },
   typography: {
     h1: {
-      fontSize: 54,
+      fontSize: 36,
       fontWeight: '800'
     },
     h2: {
@@ -39,9 +39,6 @@ export const theme = createTheme({
     },
     body2: {
       fontWeight: 400,
-    },
-    button: {
-      fontStyle: 'Roboto',
     },
   },
 });

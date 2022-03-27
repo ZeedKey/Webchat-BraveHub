@@ -3,11 +3,11 @@ import { useDispatch } from 'react-redux';
 import { setModalClose } from "../../store/session";
 
 interface IModalProps {
-    children: any
-    open: any,
+    children: React.ReactNode,
+    isOpen: boolean,
 }
 
-export const Modal: React.FC<IModalProps> = ({ children, open }) => {
+export const Modal: React.FC<IModalProps> = ({ children, isOpen }) => {
     const dispatch = useDispatch()
     const handleClose = () => dispatch(setModalClose());
 
@@ -21,10 +21,10 @@ export const Modal: React.FC<IModalProps> = ({ children, open }) => {
         border: '2px solid #000',
         boxShadow: 24,
         p: 4,
-      };
+    };
     return (
         <ModalMUI
-            open={open}
+            open={isOpen}
             onClose={handleClose}
         >
             <Box sx={style}>
