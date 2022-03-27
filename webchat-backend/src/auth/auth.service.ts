@@ -17,6 +17,13 @@ export class AuthService {
     private jwtService: JwtService,
   ) {}
   async signIn(userDto: CreateUserDto) {
+    const userName = await this.userService.getUserByUsername(userDto.username);
+    if (!userName) {
+      throw new HttpException(
+        "The user doesn't exist",
+        HttpStatus.FAILED_DEPENDENCY,
+      );
+    }
     const user = await this.validateUser(userDto.username, userDto.password);
     return this.generateToken(user);
   }
@@ -41,11 +48,8 @@ export class AuthService {
   async validateUser(username: string, pass: string): Promise<any> {
     const user = await this.userService.getUserByUsername(username);
     const isPassCorrect = await bcrypt.compare(pass, user.password);
-
     if (user && isPassCorrect) {
-      const { password, ...result } = user;
-      console.log(result)
-      return result;
+      return user;
     }
     throw new UnauthorizedException({ message: 'Access denied' });
   }

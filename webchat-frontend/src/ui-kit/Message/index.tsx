@@ -6,10 +6,10 @@ import jwtDecode from "jwt-decode";
 interface IMessageProps {
     author: string;
     body: string;
-    createDate: string;
+    // createDate: string;
 }
 
-export const Message: React.FC<IMessageProps> = ({ author, body, createDate }) => {
+export const Message: React.FC<IMessageProps> = ({ author, body }) => {
     const messageStyle = {
         background: blue[100],
         padding: '0.5rem 1rem',

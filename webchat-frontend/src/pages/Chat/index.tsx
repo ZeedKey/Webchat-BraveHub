@@ -23,8 +23,9 @@ export const Chat = () => {
 
     useEffect(() => {
         WS.on("messageToClient", (data: any) => setMessages((messages: any) => [...messages, data]))
+        console.log('message!')
         return () => WS.close()
-    }, [setMessages])
+    }, [setMessages, messages])
 
     const handleMessageSend = (e: any) => {
         e.preventDefault();
@@ -38,7 +39,7 @@ export const Chat = () => {
         <MainLayout>
             <Stack gap={2} direction='column'>
                 {
-                    messages.map((message: any) => <Message author={message.author} body={message.body} createDate={message.createdAt} />)
+                    messages.map((message: any) => <Message author={message.author} body={message.body} />)
                 }
             </Stack>
             <Stack direction='row' component='form' onSubmit={handleMessageSend} sx={{

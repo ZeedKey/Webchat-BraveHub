@@ -12,6 +12,7 @@ export const SignIn: React.FC<ISignInForm> = ({ open }) => {
         e.preventDefault();
         const form = new FormData(e.currentTarget);
         const values: any = Object.fromEntries(form);
+        console.log(values)
         send(values);
     }
     return (

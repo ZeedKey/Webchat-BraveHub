@@ -13,7 +13,10 @@ export const useMessage = () => {
             return res.unwrap()
         },
         sendMessage: (data: any) => {
-            WS.emit("messageToServer", data);
+            WS.emit("messageToServer", {
+                author : '2wee',
+                body : '2wee'
+            })
         },
     }
 }
