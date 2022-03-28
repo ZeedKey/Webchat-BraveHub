@@ -12,20 +12,19 @@ import { MessageModule } from './message/message.module';
     ConfigModule.forRoot({ envFilePath: '.env' }),
     SequelizeModule.forRoot({
       dialect: 'postgres',
-      host: process.env.HOST,
+      host: process.env.POSTGRES_HOST,
       port: Number(process.env.POSTGRES_PORT),
-      username: 'postgres',
-      password: '1111',
-      database: process.env.DB,
+      username: process.env.POSTGRES_USERNAME,
+      password: process.env.POSTGRES_PASSWORD,
+      database: process.env.POSTGRES_DB,
       models: [User, Message],
       autoLoadModels: true,
     }),
     UserModule,
     MessageModule,
-    AuthModule
+    AuthModule,
   ],
   controllers: [],
   providers: [AppGateway],
 })
-
 export class AppModule {}
