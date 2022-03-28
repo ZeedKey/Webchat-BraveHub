@@ -6,7 +6,7 @@ import { IUser } from "../../models/user";
 import Cookies from "js-cookie";
 import { useNavigate } from "react-router-dom";
 import { useSession } from "./useSession";
-
+import { ITokenData } from "../../models/token";
 
 export const useAuth = (action: 'signup' | 'signin') => {
     const dispatch = useDispatch();
@@ -21,9 +21,11 @@ export const useAuth = (action: 'signup' | 'signin') => {
                     const fetchedData: any = dispatch(authAPI.endpoints.signup.initiate(data))
                     const res = fetchedData.unwrap();
                     res
-                        .catch((e: any) => setIsErorr(e))
-                        .then((data: any) => {
-                            Cookies.set('TOKEN', data.token);
+                        .catch(() => {
+                            setIsErorr(true)
+                        })
+                        .then((data: ITokenData) => {
+                            Cookies.set('TOKEN', `Bearer ${data.token}`);
                             login()
                             navigate('/chat');
                         })
@@ -37,9 +39,11 @@ export const useAuth = (action: 'signup' | 'signin') => {
                     const fetchedData: any = dispatch(authAPI.endpoints.signin.initiate(data))
                     const res = fetchedData.unwrap();
                     res
-                    .catch((e: any) => setIsErorr(e))
-                        .then((data: any) => {
-                            Cookies.set('TOKEN', data.token);
+                        .catch(() => {
+                            setIsErorr(true)
+                        })
+                        .then((data: ITokenData) => {
+                            Cookies.set('TOKEN', `Bearer ${data.token}`);
                             login()
                             navigate('/chat');
                         })

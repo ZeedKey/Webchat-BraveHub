@@ -5,6 +5,9 @@ import { MainLayout, SignIn, SignUp, useModal } from "../../ui-kit";
 export const Home = () => {
   const { openSignUp, stateSignUp } = useModal('signup');
   const { stateSignIn } = useModal('signin');
+  const isSignUpOpen: boolean = stateSignUp === undefined ? false : stateSignUp;
+  const isSignInOpen: boolean = stateSignIn === undefined ? false : stateSignIn;
+
   return (
     <div className="Home">
       <MainLayout>
@@ -24,8 +27,8 @@ export const Home = () => {
           <Button onClick={openSignUp} size="medium" variant="contained" sx={{ textAlign: "center", mt: 5 }}>
             Start messaging
           </Button>
-          {/* <SignUp isOpen={stateSignUp} />
-          <SignIn isOpen={stateSignIn} /> */}
+          <SignUp isOpen={isSignUpOpen} />
+          <SignIn isOpen={isSignInOpen} />
         </Grid>
       </MainLayout>
     </div>

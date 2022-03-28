@@ -1,4 +1,5 @@
 export interface IMessage{
-    author:string;
+    id?: number;
+    author:string | undefined;
     body:string;
 }

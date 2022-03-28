@@ -4,8 +4,8 @@ import { setModalClose, setSignInModalOpen, setSignUpModalOpen } from "../../sto
 
 
 export const useModal = (action: 'signup' | 'signin') => {
-    const isSignUpOpen = useSelector((state: RootState) => state.sessionReducer.isSignUpModalOpen);
-    const isSignInOpen = useSelector((state: RootState) => state.sessionReducer.isSignInModalOpen);
+    const isSignUpOpen: boolean = useSelector((state: RootState) => state.sessionReducer.isSignUpModalOpen);
+    const isSignInOpen: boolean = useSelector((state: RootState) => state.sessionReducer.isSignInModalOpen);
     const dispatch = useDispatch()
 
     switch (action) {

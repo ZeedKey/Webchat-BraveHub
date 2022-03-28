@@ -1,13 +1,9 @@
 import { Alert, Button, Stack, TextField, Typography } from "@mui/material"
 import { Modal } from "..";
+import { IUser } from "../../models/user";
 import { useAuth } from '../hooks'
 interface ISignUpForm {
     isOpen: boolean;
-}
-interface IFormValues {
-    username: string;
-    email: string;
-    password: string;
 }
 
 export const SignUp: React.FC<ISignUpForm> = ({ isOpen }) => {
@@ -16,7 +12,7 @@ export const SignUp: React.FC<ISignUpForm> = ({ isOpen }) => {
     const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         const form = new FormData(e.currentTarget);
-        const values: any = Object.fromEntries(form);
+        const values: any | IUser = Object.fromEntries(form);
         send(values);
     }
 
@@ -27,7 +23,7 @@ export const SignUp: React.FC<ISignUpForm> = ({ isOpen }) => {
                     <Typography variant="h2" component="h2" sx={{ textAlign: 'center' }}>
                         Sign Up
                     </Typography>
-                    <TextField name="username" id="outlined-basic" label="Username" variant="outlined" required />
+                    <TextField name="username" id="outlined-basic" label="Username" variant="outlined" required focused />
                     <TextField name="email" id="outlined-basic" type="email" label="Email" variant="outlined" required />
                     <TextField name="password" id="outlined-basic" label="Password" variant="outlined" required />
                     {isError && <Alert severity="error">Такой пользователь существует!</Alert>}

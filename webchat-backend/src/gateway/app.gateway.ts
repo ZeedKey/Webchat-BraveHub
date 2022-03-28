@@ -1,4 +1,5 @@
 import { Logger } from '@nestjs/common';
+import { JwtService } from '@nestjs/jwt';
 import {
   OnGatewayConnection,
   OnGatewayDisconnect,
@@ -11,7 +12,10 @@ import { MessageService } from 'src/message/message.service';
 
 @WebSocketGateway()
 export class AppGateway implements OnGatewayConnection, OnGatewayDisconnect {
-  constructor(private messageService: MessageService) {}
+  constructor(
+    private messageService: MessageService,
+    private jwtService: JwtService,
+  ) {}
   @WebSocketServer()
   server;
 
@@ -19,11 +23,13 @@ export class AppGateway implements OnGatewayConnection, OnGatewayDisconnect {
 
   @SubscribeMessage('messageToServer')
   handleMessage(client: Socket, message: any): void {
-    this.server.emit('messageToClient', message);
-    this.messageService.createMessage({
-      author: message.author,
+    const userInfo: any =  this.jwtService.decode(message.author);
+    const decodedMessage = {
+      author: userInfo.username,
       body: message.body,
-    });
+    }
+    this.server.emit('messageToClient', decodedMessage);
+    this.messageService.createMessage(decodedMessage);
   }
 
   handleDisconnect(client: Socket) {

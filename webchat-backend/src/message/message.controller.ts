@@ -12,7 +12,7 @@ export class MessagesController {
     return this.messageService.createMessage(userDto);
   }
 
-  // @UseGuards(JwtAuthGuard)
+  @UseGuards(JwtAuthGuard)
   @Get()
   getAll() {
     return this.messageService.getAllMessages();

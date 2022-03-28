@@ -16,6 +16,7 @@ export const Input: React.FC<IInput> = ({ handleMessageSend }) => {
             zIndex: 1
         }}>
             <TextField
+                name = 'body'
                 required
                 autoCorrect="false"
                 fullWidth

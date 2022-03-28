@@ -8,7 +8,7 @@ export const Header: React.FC = () => {
   const navigate = useNavigate();
   const { logout, stateSession } = useSession();
   const handleToHome = () => navigate('/')
-  const handleToChat = () => navigate('/chat', { replace: true })
+  const handleToChat = () => navigate('/chat')
 
   return (
     <Stack direction="row" sx={{ justifyContent: 'space-between', p: '2rem' }}>
