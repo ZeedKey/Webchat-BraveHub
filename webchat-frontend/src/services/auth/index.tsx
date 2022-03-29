@@ -1,5 +1,4 @@
 import {createApi, fetchBaseQuery} from "@reduxjs/toolkit/dist/query/react"
-import Cookies from "js-cookie"
 import { IUser } from "../../models/user"
 
 export const authAPI = createApi({
