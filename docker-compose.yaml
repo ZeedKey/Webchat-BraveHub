@@ -6,35 +6,34 @@ services:
     image: postgres
     restart: always
     ports:
-      - 5432:5432
-
+      - "5432:5432"
     env_file:
       - ./webchat-backend/.env
-    environment:
-      - PGDATA=/var/lib/postgresql/data/name/
     volumes:
       - data-volume:/var/lib/postgresql/data
 
   backend:
+    container_name: web-backend
     restart: always
     environment:
       - POSTGRES_HOST=postgres
-    container_name: backend
+    env_file:
+      - ./webchat-backend/.env
     depends_on:
       - postgres
     build:
       context: ./webchat-backend
     ports:
-      - 3333:3333
+      - "3333:3333"
 
   frontend:
-    container_name: frontend
+    container_name: web-frontend
     depends_on:
       - backend
     build:
       context: ./webchat-frontend
     ports:
-      - 3000:3000
+      - "3000:3000"
 
 volumes:
   data-volume:

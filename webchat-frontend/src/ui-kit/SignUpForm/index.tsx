@@ -3,7 +3,7 @@ import { Modal } from "..";
 import { IUser } from "../../models/user";
 import { useAuth } from '../hooks'
 interface ISignUpForm {
-    isOpen: boolean;
+    isOpen: boolean
 }
 
 export const SignUp: React.FC<ISignUpForm> = ({ isOpen }) => {
@@ -12,7 +12,7 @@ export const SignUp: React.FC<ISignUpForm> = ({ isOpen }) => {
     const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         const form = new FormData(e.currentTarget);
-        const values: any | IUser = Object.fromEntries(form);
+        const values = Object.fromEntries(form) as unknown as IUser;
         send(values);
     }
 
