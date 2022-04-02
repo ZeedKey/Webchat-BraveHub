@@ -6,7 +6,6 @@ export const Header: React.FC = () => {
   const { openSignUp } = useModal('signup');
   const { openSignIn } = useModal('signin');
   const { logout, stateSession } = useSession();
-  console.log(process.env)
   return (
     <Stack direction="row" sx={{ justifyContent: 'space-between', p: '2rem' }}>
       <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
