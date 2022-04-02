@@ -26,7 +26,7 @@ export const SignUp: React.FC<ISignUpForm> = ({ isOpen }) => {
                     <TextField name="username" id="outlined-basic" label="Username" variant="outlined" required focused />
                     <TextField name="email" id="outlined-basic" type="email" label="Email" variant="outlined" required />
                     <TextField name="password" id="outlined-basic" label="Password" variant="outlined" required />
-                    {isError && <Alert severity="error">Такой пользователь существует!</Alert>}
+                    {isError && <Alert severity="error">Такой пользователь уже существует!</Alert>}
                     <Button type="submit" size="large" variant="contained" sx={{ textAlign: "center", mt: 2 }}>
                         Sign Up
                     </Button>

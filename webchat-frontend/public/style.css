@@ -1,13 +1,4 @@
-@keyframes blinking {
-  from {
-    color: #2196f3;
-    background: white;
-  }
-  to {
-    background: black;
-    color: #2196f3;
-  }
-}
+
 html {
   background: #2196f3;
   color: white;

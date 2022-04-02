@@ -1,10 +1,14 @@
-import {createApi, fetchBaseQuery} from "@reduxjs/toolkit/dist/query/react"
+import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/dist/query/react"
 import { IUser } from "../../models/user"
+
+const BASE_URL: string | undefined = process.env.NODE_ENV === "production" ?
+    process.env.REACT_APP_API_HOST_PROD :
+    process.env.REACT_APP_API_HOST_DEV;
 
 export const authAPI = createApi({
     reducerPath: 'authAPI',
     baseQuery: fetchBaseQuery({
-        baseUrl: 'http://localhost:3333'
+        baseUrl: BASE_URL,
     }),
     endpoints: (build) => ({
         signin: build.query({
